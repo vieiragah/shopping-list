@@ -1,1 +1,2 @@
-export * from './CardMock'
+export * from './CardMock';
+export * from './CarouselMock';
