@@ -1,3 +1,3 @@
 export * from './card';
-export * from './group';
+export * from './carousel';
 export * from './list';
