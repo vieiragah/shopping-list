@@ -8,7 +8,7 @@ import {
   Flex,
   Input,
 } from "@chakra-ui/react";
-import { CardMock } from "../mock";
+import { CardMock } from "../../mock";
 
 export const CardComponent = () => {
   const [search, setSearch] = useState("");
