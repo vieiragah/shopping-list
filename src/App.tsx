@@ -1,9 +1,9 @@
-import { CardComponent } from "./card";
-
+import { CardComponent, Carousel, Header } from "./components";
  function App() {
   return (
     <>
-      <h1>Lista de compras</h1>
+      <Header />
+      <Carousel />
       <CardComponent/>
     </>
   );
