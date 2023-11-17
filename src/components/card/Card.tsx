@@ -28,10 +28,11 @@ export const CardComponent = () => {
   return (
     <Flex
       direction="column"
-      w="95%"
+      w="100%"
       gap="12px"
       justify="center"
       margin="0 auto"
+      padding='0 24px'
     >
       <Input placeholder="Buscar..." value={search} onChange={handleSearch} />
       {filteredCards.map((card, index) => (
