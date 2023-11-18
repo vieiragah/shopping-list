@@ -27,11 +27,11 @@ function RadioCard({ children, icon, ...props }: RadioCardProps) {
         cursor="pointer"
         borderRadius="md"
         boxShadow="md"
-        bg="#29292E"
+        bg="black.200"
         opacity=".8"
-        color="#C4C4CC"
+        color="gray.200"
         _checked={{
-          bg: "#7C7C8A",
+          bg: "gray.100",
           color: "white",
         }}
         px={5}

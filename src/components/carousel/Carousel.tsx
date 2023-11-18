@@ -15,7 +15,7 @@ export const Carousel = () => {
       whiteSpace="nowrap"
       gap="20px"
       scrollBehavior="smooth"
-      padding="0 24px"
+      paddingX="24px"
       marginBottom="20px"
     >
       {CarouselMock.map((item, index) => (
@@ -32,12 +32,12 @@ export const Carousel = () => {
               alignItems="center"
               justifyContent="space-between"
             >
-              <Text color="#fff">{item.title}</Text>
+              <Text color="white">{item.title}</Text>
               {item.icon}
             </Box>
           </CardHeader>
           <CardBody>
-            <Text color="#fff" fontSize="3xl" fontWeight="bolder">
+            <Text color="white" fontSize="3xl" fontWeight="bolder">
               {typeof item.value === "number"
                 ? item.value.toLocaleString("pt-BR", {
                     style: "currency",
@@ -49,7 +49,7 @@ export const Carousel = () => {
             </Text>
           </CardBody>
           <CardFooter>
-            <Text color="#7C7C8A">{item.description}</Text>
+            <Text color="gray.100">{item.description}</Text>
           </CardFooter>
         </Card>
       ))}

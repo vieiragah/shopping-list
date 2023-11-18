@@ -61,26 +61,26 @@ export const CardComponent = () => {
       padding="0 24px 50px 24px"
     >
       <Flex justify="space-between">
-        <Text color="#C4C4CC">Transações</Text>
-        <Text color="#7C7C8A">{filteredCards.length} itens</Text>
+        <Text color="gray.200">Transações</Text>
+        <Text color="gray.100">{filteredCards.length} itens</Text>
       </Flex>
       <Input
-        bg="#121214"
+        bg="black.100"
         border='none'
-        color='#fff'
+        color='white'
         placeholder="Busque uma transação"
         value={search}
         onChange={handleSearch}
       />
       {visibleData.length > 0 ? (
         visibleData.map((card, index) => (
-          <Card size="sm" key={index} bg="#29292E" padding="0px 10px">
+          <Card size="sm" key={index} bg="black.200" paddingX="10px">
             <CardBody>
-              <CardHeader padding="10px 0 " color="#C4C4CC">
+              <CardHeader paddingY="10px" color="gray.200">
                 {card.product}
               </CardHeader>
               {card.entry === true ? (
-                <Text color="#00B37E" fontSize="2xl" fontWeight="bolder">
+                <Text color="green.100" fontSize="2xl" fontWeight="bolder">
                   {typeof card.price === "number"
                     ? card.price.toLocaleString("pt-BR", {
                         style: "currency",
@@ -91,7 +91,7 @@ export const CardComponent = () => {
                     : card.price}
                 </Text>
               ) : (
-                <Text color="#F75A68" fontSize="2xl" fontWeight="bolder">
+                <Text color="red.100" fontSize="2xl" fontWeight="bolder">
                   -{" "}
                   {typeof card.price === "number"
                     ? card.price.toLocaleString("pt-BR", {
@@ -105,10 +105,10 @@ export const CardComponent = () => {
               )}
             </CardBody>
             <CardFooter justify="space-between">
-              <Text color="#7C7C8A">
+              <Text color="gray.100">
                 <MinusIcon /> {card.category}
               </Text>
-              <Text color="#7C7C8A">
+              <Text color="gray.100">
                 <CalendarIcon /> {card.date}
               </Text>
             </CardFooter>
@@ -116,8 +116,8 @@ export const CardComponent = () => {
         ))
       ) : (
         <Box margin="30px auto" textAlign="center">
-          <NotAllowedIcon color="#ff6347bd" boxSize={20} />
-          <Text color='#fff'>Nenhum item encontrado</Text>
+          <NotAllowedIcon color="red.300" boxSize={20} />
+          <Text color='white.100'>Nenhum item encontrado</Text>
         </Box>
       )}
       <Flex justify="space-around" marginTop='20px'>
@@ -127,7 +127,7 @@ export const CardComponent = () => {
           icon={<ArrowBackIcon />}
           isDisabled={currentPage === 1}
         />
-        <Text color='#7C7C8A'>Página {currentPage}</Text>
+        <Text color='gray.100'>Página {currentPage}</Text>
         <IconButton
           onClick={() => goToPage(currentPage + 1)}
           aria-label="next"
