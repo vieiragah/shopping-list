@@ -19,26 +19,40 @@ export const Carousel = () => {
       marginBottom="20px"
     >
       {CarouselMock.map((item, index) => (
-      <Card minWidth="270px" size="sm" padding="0 15px" key={index}>
-        <CardHeader w="100%">
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Text>{item.title}</Text>
-            {item.icon}
-          </Box>
-        </CardHeader>
-        <CardBody>
-          <Text fontSize='3xl'>R$ {item.value}</Text>
-        </CardBody>
-        <CardFooter>
-          <Text>{item.description}</Text>
-        </CardFooter>
-      </Card>
-        ))}
-      
+        <Card
+          bg={item.bg}
+          minWidth="270px"
+          size="sm"
+          padding="0 15px"
+          key={index}
+        >
+          <CardHeader w="100%">
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Text color="#fff">{item.title}</Text>
+              {item.icon}
+            </Box>
+          </CardHeader>
+          <CardBody>
+            <Text color="#fff" fontSize="3xl" fontWeight="bolder">
+              {typeof item.value === "number"
+                ? item.value.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                : item.value}
+            </Text>
+          </CardBody>
+          <CardFooter>
+            <Text color="#7C7C8A">{item.description}</Text>
+          </CardFooter>
+        </Card>
+      ))}
     </Box>
   );
 };
