@@ -26,7 +26,7 @@ export const Header = () => {
   return (
     <Box padding='15px 24px 25px 24px'>
     <Flex justify='space-between'>
-        <Heading>Money</Heading>
+        <Heading color='#fff'>Money</Heading>
       <Button onClick={onOpen} colorScheme='green'>Nova transação</Button>
     </Flex>
       <Modal
@@ -36,18 +36,18 @@ export const Header = () => {
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Nova transação</ModalHeader>
-          <ModalCloseButton />
+        <ModalContent bg='#202024'>
+          <ModalHeader color='#E1E1E6'>Nova transação</ModalHeader>
+          <ModalCloseButton color='#7C7C8A' />
           <ModalBody pb={6}>
             <FormControl>
-              <Input ref={initialRef} placeholder="Descrição" />
+              <Input ref={initialRef} placeholder="Descrição"  bg='#121214' border='none'/>
             </FormControl>
             <FormControl mt={4}>
-              <Input type="number" placeholder="Preço" />
+              <Input type="number" placeholder="Preço" bg='#121214' border='none'/>
             </FormControl>
             <FormControl mt={4}>
-              <Input placeholder="Categoria" />
+              <Input placeholder="Categoria" bg='#121214' border='none'/>
             </FormControl>
             <RadioGroup>
                 <Radio/>
