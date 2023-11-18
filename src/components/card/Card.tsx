@@ -14,6 +14,8 @@ import {
   NotAllowedIcon,
   ArrowBackIcon,
   ArrowForwardIcon,
+  CalendarIcon,
+  MinusIcon,
 } from "@chakra-ui/icons";
 import { CardMock } from "../../mock";
 
@@ -56,40 +58,76 @@ export const CardComponent = () => {
       gap="12px"
       justify="center"
       margin="0 auto"
-      padding="0 24px"
+      padding="0 24px 50px 24px"
     >
       <Flex justify="space-between">
-        <Text>Transações</Text>
-        <Text>{filteredCards.length} itens</Text>
+        <Text color="#C4C4CC">Transações</Text>
+        <Text color="#7C7C8A">{filteredCards.length} itens</Text>
       </Flex>
-      <Input placeholder="Buscar..." value={search} onChange={handleSearch} />
+      <Input
+        bg="#121214"
+        border='none'
+        color='#fff'
+        placeholder="Busque uma transação"
+        value={search}
+        onChange={handleSearch}
+      />
       {visibleData.length > 0 ? (
         visibleData.map((card, index) => (
-          <Card size="sm" key={index}>
+          <Card size="sm" key={index} bg="#29292E" padding="0px 10px">
             <CardBody>
-              <CardHeader textAlign="center">{card.product}</CardHeader>
-              <Text textAlign="center">R$: {card.price}</Text>
+              <CardHeader padding="10px 0 " color="#C4C4CC">
+                {card.product}
+              </CardHeader>
+              {card.entry === true ? (
+                <Text color="#00B37E" fontSize="2xl" fontWeight="bolder">
+                  {typeof card.price === "number"
+                    ? card.price.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })
+                    : card.price}
+                </Text>
+              ) : (
+                <Text color="#F75A68" fontSize="2xl" fontWeight="bolder">
+                  -{" "}
+                  {typeof card.price === "number"
+                    ? card.price.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })
+                    : card.price}
+                </Text>
+              )}
             </CardBody>
             <CardFooter justify="space-between">
-              <Text>{card.category}</Text>
-              <Text>{card.date}</Text>
+              <Text color="#7C7C8A">
+                <MinusIcon /> {card.category}
+              </Text>
+              <Text color="#7C7C8A">
+                <CalendarIcon /> {card.date}
+              </Text>
             </CardFooter>
           </Card>
         ))
       ) : (
         <Box margin="30px auto" textAlign="center">
           <NotAllowedIcon color="#ff6347bd" boxSize={20} />
-          <Text>Nenhum item encontrado</Text>
+          <Text color='#fff'>Nenhum item encontrado</Text>
         </Box>
       )}
-      <Flex justify="space-around">
+      <Flex justify="space-around" marginTop='20px'>
         <IconButton
           onClick={() => goToPage(currentPage - 1)}
           aria-label="previus"
           icon={<ArrowBackIcon />}
           isDisabled={currentPage === 1}
         />
-        <Text>Página {currentPage}</Text>
+        <Text color='#7C7C8A'>Página {currentPage}</Text>
         <IconButton
           onClick={() => goToPage(currentPage + 1)}
           aria-label="next"
