@@ -13,7 +13,7 @@ import {
   Input,
   Flex,
   Heading,
-  Box
+  Box,
 } from "@chakra-ui/react";
 import React from "react";
 import { Radio } from "../radio";
@@ -24,11 +24,13 @@ export const Header = () => {
   const finalRef = React.useRef(null);
 
   return (
-    <Box padding='15px 24px 25px 24px'>
-    <Flex justify='space-between'>
-        <Heading>Money</Heading>
-      <Button onClick={onOpen} colorScheme='green'>Nova transação</Button>
-    </Flex>
+    <Box padding="15px 24px 25px 24px">
+      <Flex justify="space-between">
+        <Heading color="white.100">Money</Heading>
+        <Button onClick={onOpen} colorScheme="green">
+          Nova transação
+        </Button>
+      </Flex>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -36,25 +38,35 @@ export const Header = () => {
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Nova transação</ModalHeader>
-          <ModalCloseButton />
+        <ModalContent bg="black.300">
+          <ModalHeader color="white.200">Nova transação</ModalHeader>
+          <ModalCloseButton color="gray.100" />
           <ModalBody pb={6}>
             <FormControl>
-              <Input ref={initialRef} placeholder="Descrição" />
+              <Input
+                ref={initialRef}
+                placeholder="Descrição"
+                bg="black.100"
+                border="none"
+              />
             </FormControl>
             <FormControl mt={4}>
-              <Input type="number" placeholder="Preço" />
+              <Input
+                type="number"
+                placeholder="Preço"
+                bg="black.100"
+                border="none"
+              />
             </FormControl>
             <FormControl mt={4}>
-              <Input placeholder="Categoria" />
+              <Input placeholder="Categoria" bg="black.100" border="none" />
             </FormControl>
             <RadioGroup>
-                <Radio/>
+              <Radio />
             </RadioGroup>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="green" width='100%' margin='0 auto' mr={3}>
+            <Button colorScheme="green" width="100%" margin="0 auto" mr={3}>
               Cadastrar
             </Button>
           </ModalFooter>

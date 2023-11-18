@@ -15,30 +15,44 @@ export const Carousel = () => {
       whiteSpace="nowrap"
       gap="20px"
       scrollBehavior="smooth"
-      padding="0 24px"
+      paddingX="24px"
       marginBottom="20px"
     >
       {CarouselMock.map((item, index) => (
-      <Card minWidth="270px" size="sm" padding="0 15px" key={index}>
-        <CardHeader w="100%">
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Text>{item.title}</Text>
-            {item.icon}
-          </Box>
-        </CardHeader>
-        <CardBody>
-          <Text fontSize='3xl'>R$ {item.value}</Text>
-        </CardBody>
-        <CardFooter>
-          <Text>{item.description}</Text>
-        </CardFooter>
-      </Card>
-        ))}
-      
+        <Card
+          bg={item.bg}
+          minWidth="270px"
+          size="sm"
+          padding="0 15px"
+          key={index}
+        >
+          <CardHeader w="100%">
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Text color="white">{item.title}</Text>
+              {item.icon}
+            </Box>
+          </CardHeader>
+          <CardBody>
+            <Text color="white" fontSize="3xl" fontWeight="bolder">
+              {typeof item.value === "number"
+                ? item.value.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                : item.value}
+            </Text>
+          </CardBody>
+          <CardFooter>
+            <Text color="gray.100">{item.description}</Text>
+          </CardFooter>
+        </Card>
+      ))}
     </Box>
   );
 };
