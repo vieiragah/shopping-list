@@ -89,6 +89,7 @@ export const CardComponent = () => {
           icon={<ArrowBackIcon />}
           isDisabled={currentPage === 1}
         />
+        <Text>Página {currentPage}</Text>
         <IconButton
           onClick={() => goToPage(currentPage + 1)}
           aria-label="next"
