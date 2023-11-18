@@ -8,9 +8,14 @@ import {
   Flex,
   Input,
   Box,
+  IconButton,
 } from "@chakra-ui/react";
+import {
+  NotAllowedIcon,
+  ArrowBackIcon,
+  ArrowForwardIcon,
+} from "@chakra-ui/icons";
 import { CardMock } from "../../mock";
-import { NotAllowedIcon } from "@chakra-ui/icons";
 
 export const CardComponent = () => {
   const [search, setSearch] = useState("");
@@ -27,6 +32,23 @@ export const CardComponent = () => {
     });
   }, [search]);
 
+  // Paginação
+  const itemsPerPage = 3;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPage = Math.ceil(filteredCards.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const visibleData = useMemo(() => {
+    return filteredCards?.slice(startIndex, endIndex);
+  }, [filteredCards, startIndex, endIndex]);
+
+  const goToPage = (pageNumber: number) => {
+    if (pageNumber >= 1 && pageNumber <= totalPage) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
   return (
     <Flex
       direction="column"
@@ -36,9 +58,13 @@ export const CardComponent = () => {
       margin="0 auto"
       padding="0 24px"
     >
+      <Flex justify="space-between">
+        <Text>Transações</Text>
+        <Text>{filteredCards.length} itens</Text>
+      </Flex>
       <Input placeholder="Buscar..." value={search} onChange={handleSearch} />
-      {filteredCards.length > 0 ? (
-        filteredCards.map((card, index) => (
+      {visibleData.length > 0 ? (
+        visibleData.map((card, index) => (
           <Card size="sm" key={index}>
             <CardBody>
               <CardHeader textAlign="center">{card.product}</CardHeader>
@@ -56,6 +82,21 @@ export const CardComponent = () => {
           <Text>Nenhum item encontrado</Text>
         </Box>
       )}
+      <Flex justify="space-around">
+        <IconButton
+          onClick={() => goToPage(currentPage - 1)}
+          aria-label="previus"
+          icon={<ArrowBackIcon />}
+          isDisabled={currentPage === 1}
+        />
+        <Text>Página {currentPage}</Text>
+        <IconButton
+          onClick={() => goToPage(currentPage + 1)}
+          aria-label="next"
+          icon={<ArrowForwardIcon />}
+          isDisabled={currentPage === totalPage || visibleData.length < 3}
+        />
+      </Flex>
     </Flex>
   );
 };
